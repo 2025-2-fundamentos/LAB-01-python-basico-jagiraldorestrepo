@@ -11,6 +11,8 @@ import csv
 # cada iteracion me da una lista de la fila
 
 
+
+
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
