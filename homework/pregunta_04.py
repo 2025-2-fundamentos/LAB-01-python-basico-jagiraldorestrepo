@@ -30,6 +30,4 @@ def pregunta_04():
         return sorted(conteo.items())
 
     
-
-
 pregunta_04()
