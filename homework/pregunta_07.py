@@ -17,6 +17,7 @@ Rta/
 
     """
 import csv
+from collections import defaultdict
 
 def pregunta_07():
     diccionario = {}
@@ -36,5 +37,16 @@ def pregunta_07():
     resultado.sort()
     return resultado
 
+
+def pregunta_07_mejorada(path="files/input/data.csv"):
+    grupos = defaultdict(list)  # clave (col 1) -> lista de letras (col 0)
+
+    with open(path, newline="", encoding="utf-8") as f:
+        reader = csv.reader(f, delimiter="\t")
+        for letra, numero, *_ in reader:   # col0=letra, col1=número, resto ignorado
+            grupos[int(numero)].append(letra)
+
+    # lista de tuplas (clave, lista_de_letras) ordenada por la clave
+    return sorted(grupos.items())
 
 pregunta_07()
