@@ -19,7 +19,7 @@ def pregunta_12():
         reader = csv.reader(f, delimiter="\t")
 
         for letra, *_, col5 in reader:
-            suma = sum([int(x.split(':')[-1])  for x in col5.split(',')])
+            suma = sum((int(x.split(':')[-1])  for x in col5.split(',')))
             diccionario_sumas[letra] += suma
 
     return dict(sorted(diccionario_sumas.items()))  
