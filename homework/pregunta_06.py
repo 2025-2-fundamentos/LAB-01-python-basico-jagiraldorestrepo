@@ -45,5 +45,30 @@ def pregunta_06():
         
         return resultado    
     
-pregunta_06()
+
+
+
+def pregunta_06_mejorada(path="files/input/data.csv"):
+    mins_maxs = {}  # clave -> (min, max)
+
+    with open(path, newline="", encoding="utf-8") as f:
+        reader = csv.reader(f, delimiter='\t')
+        for row in reader:
+            for par in row[4].split(','):
+                k, v = par.split(":")   # una sola partición
+                v = int(v)
+
+                if k in mins_maxs:
+                    mn, mx = mins_maxs[k]
+                    if v < mn: mn = v
+                    if v > mx: mx = v
+                    mins_maxs[k] = (mn, mx)
+                else:
+                    mins_maxs[k] = (v, v)
+
+    # retorna lista de tuplas (clave, min, max) ordenada por clave
+    return sorted((k, mn, mx) for k, (mn, mx) in mins_maxs.items())
+
+
+print(pregunta_06_mejorada())
 
