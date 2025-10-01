@@ -44,9 +44,8 @@ def pregunta_08_mejorada():
     letras_por_valor = defaultdict(set)  #ahorra la logica de decir si existe se agrega, sino se crea
     with open("files/input/data.csv", "r") as f:
         reader = csv.reader(f, delimiter="\t")
-        for row in reader:
-            letra = row[0]          # columna 1 (A, B, C, ...)
-            valor = int(row[1])     # columna 2 (0..9)
+        for letra, valor, *_ in reader:
+            valor = int(valor)
             letras_por_valor[valor].add(letra)
 
     resultado = [(valor, sorted(letras)) for valor, letras in sorted(letras_por_valor.items())]
