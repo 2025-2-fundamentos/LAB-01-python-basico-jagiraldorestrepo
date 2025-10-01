@@ -8,7 +8,8 @@ Rta/
 E	1	1999-02-28	b,g,f	jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
 """
 import csv
-from collections import defaultdict
+from collections import defaultdict, Counter
+
 
 def pregunta_11():
     suma = defaultdict(int)
@@ -22,4 +23,17 @@ def pregunta_11():
                 suma[letra] += numero
 
     return dict(sorted(suma.items()))
+print(pregunta_11())
+
+
+
+def pregunta_11_mejorada():
+    suma = Counter()
+    with open("files/input/data.csv", "r") as f:
+        reader = csv.reader(f, delimiter="\t")
+        for _, numero, _, letras, _ in reader:
+            numero = int(numero)
+            suma.update({letra: numero for letra in letras.split(',')})
+    return dict(sorted(suma.items()))
+
 print(pregunta_11())
