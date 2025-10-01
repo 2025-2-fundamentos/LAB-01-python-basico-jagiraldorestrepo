@@ -31,3 +31,19 @@ def pregunta_09():
 
     return dict(sorted(conteo.items()))
 pregunta_09()
+
+
+def pregunta_09_mejorada(path="files/input/data.csv"):
+    conteo = Counter()
+
+    with open(path, newline="", encoding="utf-8") as f:
+        reader = csv.reader(f, delimiter="\t")
+        for *_, claves in reader:
+            # extraer solo las claves antes de los ':'
+            claves = (x.split(':')[0] for x in claves.split(","))
+            conteo.update(claves)   # actualiza directamente el contador
+
+    # retornar dict ordenado por clave
+    return dict(sorted(conteo.items()))
+
+pregunta_09_mejorada()
